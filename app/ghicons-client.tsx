@@ -3,7 +3,8 @@
 import * as React from 'react'
 import './ghicons.css'
 import * as Icons from 'ghicons'
-import { AbusuaPa } from 'ghicons'
+import NavBar from './components/nav-bar'
+import { useTheme } from './components/theme-provider'
 
 type IconComponent = React.ComponentType<{
   size?: number | string
@@ -23,6 +24,7 @@ function buildUsageCode(name: string, size: number, color: string) {
 }
 
 export default function GhiconsClient() {
+  const { theme } = useTheme()
   const [query, setQuery] = React.useState('')
   const [size, setSize] = React.useState<number>(32)
   const [color, setColor] = React.useState<string>('#111827')
@@ -60,13 +62,11 @@ export default function GhiconsClient() {
   }
 
   return (
-    <div className={`demoRoot ${bg === 'dark' ? 'isDark' : 'isLight'}`}>
+    <div className={`demoRoot ${theme === 'dark' ? 'isDark' : 'isLight'}`}>
+      <NavBar />
+      <div className="demoContent">
       <header className="demoHeader">
         <div className="titleBlock">
-          <div className="logoTitle">
-            <AbusuaPa size={40} color={bg == 'dark' ? '#fff' : '#000'} />
-            <h1 className="title">ghicons</h1>
-          </div>
           <p className="subtitle">Pick an icon, tweak props, and copy the exact JSX you&apos;re previewing.</p>
         </div>
 
@@ -215,6 +215,7 @@ export default function GhiconsClient() {
           </aside>
         </div>
       </main>
+      </div>
     </div>
   )
 }

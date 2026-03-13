@@ -1,0 +1,117 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.isDark {
+  background: rgba(11, 16, 32, 0.88);
+  border-bottom-color: rgba(148, 163, 184, 0.15);
+}
+
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.navLogoText {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.themeToggle:hover {
+  opacity: 1;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.navLink {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.75;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.navLink:hover {
+  opacity: 1;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.navLinkActive {
+  opacity: 1;
+  background: rgba(99, 102, 241, 0.12);
+  color: inherit;
+}
+
+.navLinkExternal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.75;
+  transition: opacity 0.15s, background 0.15s;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  margin-left: 4px;
+}
+
+.navLinkExternal:hover {
+  opacity: 1;
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+@media (max-width: 560px) {
+  .navLinkExternal span,
+  .navLinkExternal {
+    font-size: 0;
+    padding: 6px 8px;
+  }
+
+  .navLinkExternal svg {
+    font-size: initial;
+  }
+}
