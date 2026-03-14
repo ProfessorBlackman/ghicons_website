@@ -28,8 +28,7 @@ export default function GhiconsClient() {
   const [query, setQuery] = React.useState('')
   const [size, setSize] = React.useState<number>(32)
   const [color, setColor] = React.useState<string>('#111827')
-  const [bg, setBg] = React.useState<'light' | 'dark'>('light')
-  const [selectedName, setSelectedName] = React.useState<string>(() => ALL_ICONS[0]?.[0] ?? '')
+const [selectedName, setSelectedName] = React.useState<string>(() => ALL_ICONS[0]?.[0] ?? '')
 
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -113,25 +112,6 @@ export default function GhiconsClient() {
             </div>
           </label>
 
-          <div className="control">
-            <span className="controlLabel">Background</span>
-            <div className="segmented">
-              <button
-                type="button"
-                className={`segBtn ${bg === 'light' ? 'active' : ''}`}
-                onClick={() => setBg('light')}
-              >
-                Light
-              </button>
-              <button
-                type="button"
-                className={`segBtn ${bg === 'dark' ? 'active' : ''}`}
-                onClick={() => setBg('dark')}
-              >
-                Dark
-              </button>
-            </div>
-          </div>
         </div>
       </header>
 
@@ -154,7 +134,7 @@ export default function GhiconsClient() {
                   title={`Preview "${name}"`}
                 >
                   <div className="iconWrap" aria-hidden="true">
-                    <Icon size={28} color={bg === 'dark' ? '#E5E7EB' : '#111827'} />
+                    <Icon size={28} color={theme === 'dark' ? '#E5E7EB' : '#111827'} />
                   </div>
                   <div className="iconName">{name}</div>
                 </button>
@@ -215,6 +195,11 @@ export default function GhiconsClient() {
           </aside>
         </div>
       </main>
+      <footer className="siteFooter">
+        <a href="https://methuselah.site" target="_blank" rel="noopener noreferrer">
+          Built by The Laughing Chicken
+        </a>
+      </footer>
       </div>
     </div>
   )

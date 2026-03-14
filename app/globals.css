@@ -33,3 +33,27 @@ body {
 button {
   font-family: inherit;
 }
+
+.siteFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 12px 24px;
+  font-size: 13px;
+  background: #0b1020;
+  color: #e5e7eb;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  z-index: 10;
+}
+
+.siteFooter a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.siteFooter a:hover {
+  opacity: 0.85;
+}

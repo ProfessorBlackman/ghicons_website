@@ -2,6 +2,8 @@
 
 .docsRoot {
   min-height: 100vh;
+  padding-bottom: 48px;
+  box-sizing: border-box;
 }
 
 .docsRoot.isLight {

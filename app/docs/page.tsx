@@ -321,6 +321,11 @@ const IconButton = ({ label, ...iconProps }: IconButtonProps) => (
           </Section>
         </main>
       </div>
+      <footer className="siteFooter">
+        <a href="https://methuselah.site" target="_blank" rel="noopener noreferrer">
+          Built by The Laughing Chicken
+        </a>
+      </footer>
     </DocsRoot>
   )
 }
