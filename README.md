@@ -27,8 +27,36 @@ The gallery is driven by the registry rather than by enumerating the React packa
 ```bash
 pnpm install
 pnpm dev        # http://localhost:3000
-pnpm build
+pnpm build      # static export to out/
 pnpm lint
+```
+
+## Deployment
+
+The site is a **static export** — `output: "export"` in `next.config.ts` — and is
+published to GitHub Pages by `.github/workflows/deploy.yml` on every push to
+`main`. Pull requests build and lint but do not deploy.
+
+There is nothing server-side: no route handlers, middleware, server actions or
+image optimisation. Keep it that way, or the export stops working. If you ever
+need one of those, the site needs a different host.
+
+Three details that the export depends on:
+
+| File | Why |
+|---|---|
+| `trailingSlash: true` | Emits `icons/index.html` rather than `icons.html`, so a plain static host resolves `/icons` |
+| `public/CNAME` | Holds the custom domain, which GitHub Pages otherwise forgets on each deploy |
+| `public/.nojekyll` | Stops Jekyll stripping `_next/`. Not needed by the Actions-based deploy, which serves the artifact as-is, but required if publishing from a branch — cheap insurance |
+
+The workflow checks the export before publishing: every route, `CNAME`,
+`.nojekyll` and a populated `_next/` must be present, so a silent export
+regression fails the build instead of the live site.
+
+To preview exactly what gets deployed:
+
+```bash
+pnpm build && npx serve out
 ```
 
 ## Updating to a new GHIcons release

@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Let a running deploy finish rather than cancelling it, so the live site is
+# never left mid-publish. Queued runs collapse to the newest.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      # `output: "export"` in next.config.ts writes the static site to out/.
+      - name: Build
+        run: pnpm build
+
+      # A silent export regression — a missing route, or Jekyll eating _next/ —
+      # is invisible until the site is live. Check before publishing.
+      - name: Check the export
+        run: |
+          for f in index.html icons/index.html docs/index.html about/index.html 404.html CNAME .nojekyll; do
+            if [ ! -e "out/$f" ]; then
+              echo "::error::missing from export: out/$f"
+              exit 1
+            fi
+            echo "ok  out/$f"
+          done
+          test -d out/_next || { echo "::error::out/_next is missing — assets would 404"; exit 1; }
+          echo "ok  out/_next ($(find out/_next -type f | wc -l) files)"
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    name: Deploy
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
