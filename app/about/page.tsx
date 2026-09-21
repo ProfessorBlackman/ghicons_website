@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Adinkrahene, GhanaCedi, GhanaFlag } from '@ghicons/react'
 import { icons } from 'ghicons'
 import NavBar from '../components/nav-bar'
+import { openGraphFor } from '../lib/og'
 import HomeRoot from '../home-client'
 import '../home.css'
 import './about.css'
@@ -12,7 +13,9 @@ const countIn = (category: string) => icons.filter((i) => i.category === categor
 const documented = icons.filter((i) => i.meaning).length
 
 export const metadata = {
-  title: 'About — ghicons',
+  title: 'About',
+  alternates: { canonical: '/about/' },
+  openGraph: openGraphFor({ url: '/about/' }),
   description:
     'What the GHIcons collection takes in, what Adinkra symbols are, how the project researches and represents them, and how to contribute — including the work that needs no code.',
 }

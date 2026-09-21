@@ -2,10 +2,12 @@
 
 import * as React from 'react'
 import './icons.css'
+import Link from 'next/link'
 import * as Icons from '@ghicons/react'
 import { icons as registry, categories as allCategories, registry as meta } from 'ghicons'
 import NavBar from '../components/nav-bar'
 import { useTheme } from '../components/theme-provider'
+import { CATEGORY_LABELS, iconHref } from '../lib/icons'
 
 type IconComponent = React.ComponentType<{
   size?: number | string
@@ -33,12 +35,6 @@ const ALL_ICONS: Entry[] = registry
     return Component ? { ...icon, Component } : null
   })
   .filter((entry): entry is Entry => entry !== null)
-
-const CATEGORY_LABELS: Record<string, string> = {
-  adinkra: 'Adinkra',
-  general: 'General',
-  national: 'National',
-}
 
 const countFor = (category: string) =>
   category === 'all' ? ALL_ICONS.length : ALL_ICONS.filter((i) => i.category === category).length
@@ -240,7 +236,15 @@ export default function IconsClient() {
             <aside className="previewPanel" aria-label="Selected icon preview">
               <div className="previewHeader">
                 <div className="previewTitleBlock">
-                  <div className="previewTitle">{selectedName || 'Select an icon'}</div>
+                  <div className="previewTitle">
+                    {selected ? (
+                      <Link href={iconHref(selected.slug)} className="previewTitleLink">
+                        {selected.name}
+                      </Link>
+                    ) : (
+                      'Select an icon'
+                    )}
+                  </div>
                   <div className="previewSub">Live preview updates as you change size/color.</div>
                 </div>
 
@@ -273,6 +277,11 @@ export default function IconsClient() {
                 <div className="previewHelp mono">
                   import {'{'} {selectedName || 'Icon'} {'}'} from &apos;@ghicons/react&apos;
                 </div>
+                {selected && (
+                  <Link href={iconHref(selected.slug)} className="openIconPage">
+                    Open the {selected.name} page — meaning, downloads and snippets →
+                  </Link>
+                )}
               </div>
 
               {selected && (
