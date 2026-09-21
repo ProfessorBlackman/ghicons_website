@@ -36,7 +36,10 @@ const CLOTH = [
 ]
 
 export const metadata = {
-  title: 'ghicons — Ghanaian symbols for software',
+  // Absolute, so the layout's "— ghicons" suffix is not appended to a title
+  // that already ends in it.
+  title: { absolute: 'ghicons — Ghanaian symbols for software' },
+  alternates: { canonical: '/' },
   description:
     'Ghanaian symbols gathered in one place and standardised — Adinkra, currency, national emblems and more — as plain SVG, typed React components, and a machine-readable index.',
 }

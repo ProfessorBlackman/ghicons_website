@@ -1,6 +1,8 @@
 import type {Metadata} from "next";
 import {Bricolage_Grotesque, Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
+import {openGraphFor} from "./lib/og";
+import {SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL} from "./lib/site";
 import {ThemeProvider} from "./components/theme-provider";
 import MigrationBanner from "./components/migration-banner";
 import React from "react";
@@ -24,8 +26,16 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-    title: "ghicons",
-    description: "Ghanaian symbols gathered in one place and standardised — Adinkra, currency, national emblems and more. For React, for any other framework, or as plain SVG.",
+    // Absolute URLs for canonical tags, Open Graph and the sitemap. Without it
+    // every `alternates.canonical` below would resolve against localhost.
+    metadataBase: new URL(SITE_URL),
+    // Pages set a bare title — "Docs", or an icon's name — and get the site name
+    // appended here, so 106 icon pages do not each restate it.
+    title: {
+        default: SITE_TAGLINE,
+        template: `%s — ${SITE_NAME}`,
+    },
+    description: SITE_DESCRIPTION,
     icons: "/logo.svg",
     keywords: ["ghicons", "react", "npm",
         "icons", "typescript", "package",
@@ -33,6 +43,13 @@ export const metadata: Metadata = {
         "adinkra", "svg", "icon library",
         "african", "cultural symbols"
     ],
+    alternates: {canonical: "/"},
+    openGraph: openGraphFor({url: "/"}),
+    // Card type only: title, description and image are resolved per page from
+    // the metadata above, so each icon page tweets as itself.
+    twitter: {
+        card: "summary_large_image",
+    },
 };
 
 export default function RootLayout({

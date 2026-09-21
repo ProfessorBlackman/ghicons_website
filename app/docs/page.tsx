@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import NavBar from '../components/nav-bar'
+import { openGraphFor } from '../lib/og'
 import DocsRoot from './docs-client'
 import '../docs/docs.css'
 
@@ -23,7 +24,9 @@ function Section({ id, title, children }: { id: string; title: string; children:
 const REPO = 'https://github.com/ProfessorBlackman/ghicons'
 
 export const metadata = {
-  title: 'Docs — ghicons',
+  title: 'Docs',
+  alternates: { canonical: '/docs/' },
+  openGraph: openGraphFor({ url: '/docs/' }),
   description:
     'Installation and usage for GHIcons — Ghanaian cultural icons for React and for any other framework.',
 }

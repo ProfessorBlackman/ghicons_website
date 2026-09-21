@@ -43,7 +43,10 @@ jobs:
       # is invisible until the site is live. Check before publishing.
       - name: Check the export
         run: |
-          for f in index.html icons/index.html docs/index.html about/index.html 404.html CNAME .nojekyll; do
+          for f in index.html icons/index.html docs/index.html about/index.html 404.html \
+                   sitemap.xml robots.txt og/image.png \
+                   icons/gye-nyame/index.html og/gye-nyame/image.png \
+                   CNAME .nojekyll; do
             if [ ! -e "out/$f" ]; then
               echo "::error::missing from export: out/$f"
               exit 1
@@ -52,6 +55,24 @@ jobs:
           done
           test -d out/_next || { echo "::error::out/_next is missing — assets would 404"; exit 1; }
           echo "ok  out/_next ($(find out/_next -type f | wc -l) files)"
+
+          # The icon pages, their Open Graph cards and the sitemap are all
+          # generated from the registry. If any of the three stops matching it,
+          # the site has quietly lost pages — which is exactly the kind of
+          # failure nobody notices until an icon 404s months later.
+          expected=$(node -p "require('ghicons/registry.json').icons.length")
+          pages=$(find out/icons -mindepth 2 -maxdepth 2 -name index.html | wc -l | tr -d " ")
+          cards=$(find out/og -mindepth 2 -maxdepth 2 -name image.png | wc -l | tr -d " ")
+          listed=$(( $(grep -c '<loc>' out/sitemap.xml) - 4 ))  # minus the four fixed pages
+          for pair in "pages:$pages" "og cards:$cards" "sitemap entries:$listed"; do
+            name=${pair%%:*}
+            count=${pair##*:}
+            if [ "$count" != "$expected" ]; then
+              echo "::error::$name = $count, registry has $expected icons"
+              exit 1
+            fi
+            echo "ok  $name = $count"
+          done
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
