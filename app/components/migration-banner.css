@@ -1,0 +1,106 @@
+.migrationBanner {
+  background: rgba(234, 179, 8, 0.12);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.4);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.migrationBannerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.migrationBannerTag {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(234, 179, 8, 0.28);
+  color: #854d0e;
+}
+
+.migrationBannerText {
+  flex: 1 1 320px;
+  margin: 0;
+  min-width: 0;
+  color: #713f12;
+}
+
+.migrationBannerText code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.92em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(120, 53, 15, 0.12);
+}
+
+.migrationBannerLink {
+  flex: none;
+  font-weight: 600;
+  color: #713f12;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+.migrationBannerLink:hover {
+  opacity: 0.75;
+}
+
+.migrationBannerClose {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  line-height: 1;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #713f12;
+  cursor: pointer;
+}
+
+.migrationBannerClose:hover {
+  background: rgba(120, 53, 15, 0.12);
+}
+
+.migrationBanner.isDark {
+  background: rgba(234, 179, 8, 0.14);
+  border-bottom-color: rgba(234, 179, 8, 0.32);
+}
+
+.migrationBanner.isDark .migrationBannerTag {
+  background: rgba(234, 179, 8, 0.3);
+  color: #fde68a;
+}
+
+.migrationBanner.isDark .migrationBannerText,
+.migrationBanner.isDark .migrationBannerLink,
+.migrationBanner.isDark .migrationBannerClose {
+  color: #fde68a;
+}
+
+.migrationBanner.isDark .migrationBannerText code {
+  background: rgba(253, 230, 138, 0.16);
+}
+
+.migrationBanner.isDark .migrationBannerClose:hover {
+  background: rgba(253, 230, 138, 0.16);
+}
+
+@media (max-width: 640px) {
+  .migrationBannerInner {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+}

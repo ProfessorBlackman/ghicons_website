@@ -35,13 +35,19 @@ export default function NavBar() {
           )}
         </button>
         <Link href="/" className={`navLink ${pathname === '/' ? 'navLinkActive' : ''}`}>
-          Browse
+          Home
+        </Link>
+        <Link href="/icons" className={`navLink ${pathname === '/icons' ? 'navLinkActive' : ''}`}>
+          Icons
         </Link>
         <Link href="/docs" className={`navLink ${pathname === '/docs' ? 'navLinkActive' : ''}`}>
           Docs
         </Link>
+        <Link href="/about" className={`navLink ${pathname === '/about' ? 'navLinkActive' : ''}`}>
+          About
+        </Link>
         <a
-          href="https://www.npmjs.com/package/ghicons"
+          href="https://www.npmjs.com/package/@ghicons/react"
           target="_blank"
           rel="noopener noreferrer"
           className="navLinkExternal"

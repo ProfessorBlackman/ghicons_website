@@ -13,7 +13,7 @@
   background: rgba(255, 255, 255, 0.85);
 }
 
-.isDark {
+.navBar.isDark {
   background: rgba(11, 16, 32, 0.88);
   border-bottom-color: rgba(148, 163, 184, 0.15);
 }
@@ -102,6 +102,27 @@
   opacity: 1;
   background: rgba(148, 163, 184, 0.12);
   border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* The bar holds a logo, four routes, two external links and a theme toggle.
+   Rather than shaving padding until it just fits — which breaks again the next
+   time a page is added — let the links wrap onto their own row. */
+@media (max-width: 860px) {
+  .navBar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 16px;
+    row-gap: 6px;
+  }
+
+  .navLinks {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  .navLink {
+    padding: 6px 10px;
+  }
 }
 
 @media (max-width: 560px) {

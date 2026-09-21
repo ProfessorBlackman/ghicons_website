@@ -1,11 +1,11 @@
 'use client'
 
 import * as React from 'react'
-import './ghicons.css'
+import './icons.css'
 import * as Icons from '@ghicons/react'
 import { icons as registry, categories as allCategories, registry as meta } from 'ghicons'
-import NavBar from './components/nav-bar'
-import { useTheme } from './components/theme-provider'
+import NavBar from '../components/nav-bar'
+import { useTheme } from '../components/theme-provider'
 
 type IconComponent = React.ComponentType<{
   size?: number | string
@@ -47,7 +47,7 @@ function buildUsageCode(name: string, size: number, color: string) {
   return `<${name} size={${size}} color="${color}" />`
 }
 
-export default function GhiconsClient() {
+export default function IconsClient() {
   const { theme } = useTheme()
   const [query, setQuery] = React.useState('')
   const [category, setCategory] = React.useState<string>('all')

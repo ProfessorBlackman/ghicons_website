@@ -1,0 +1,408 @@
+/* Landing page.
+
+   The visual idea is adinkra cloth: symbols stamped in a grid, divided by
+   comb-drawn lines (nkyimu). The cloth panel in the hero is the one bold
+   element; everything below it stays quiet so the symbols carry the page. */
+
+.homeRoot {
+  --ink: #111827;
+  --ink-soft: #4b5563;
+  --paper: #ffffff;
+  --paper-sunk: #f8fafc;
+  --rule: rgba(148, 163, 184, 0.35);
+  --gold: #d4a017;
+  --indigo: #6366f1;
+
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.homeRoot.isDark {
+  --ink: #e5e7eb;
+  --ink-soft: #9ca3af;
+  --paper: #0b1020;
+  --paper-sunk: #0f1629;
+  --rule: rgba(148, 163, 184, 0.24);
+  --gold: #e0b544;
+  --indigo: #818cf8;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 72px 24px 88px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.heroTitle {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+  max-width: 13ch;
+}
+
+.heroLead {
+  margin: 0 0 32px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.heroNote {
+  margin: 28px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.btnPrimary {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.btnPrimary:hover {
+  background: var(--ink);
+  opacity: 0.86;
+}
+
+.btn:focus-visible,
+.inlineLink:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+/* ── The cloth ───────────────────────────────────────────────────────────── */
+
+.cloth {
+  position: relative;
+}
+
+.clothGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* nkyimu — the dividing lines are drawn with a comb, so they read as a set of
+   fine parallel striations rather than a single hairline. */
+.clothCell {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 18%;
+  color: var(--ink);
+}
+
+.clothCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 3px) right / 3px 100% no-repeat,
+    repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 3px) bottom / 100% 3px no-repeat;
+}
+
+.clothCell:nth-child(4n)::after {
+  background:
+    repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 3px) bottom / 100% 3px no-repeat;
+}
+
+.clothCell:nth-child(n + 13)::after {
+  background:
+    repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 3px) right / 3px 100% no-repeat;
+}
+
+.clothCell:nth-child(16)::after {
+  background: none;
+}
+
+.clothCell svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* One orchestrated moment: the symbols stamp in, the way the cloth is printed.
+   Then the page is still. */
+@media (prefers-reduced-motion: no-preference) {
+  .clothCell svg {
+    animation: stamp 420ms cubic-bezier(0.2, 0.9, 0.3, 1) backwards;
+    animation-delay: calc(120ms + var(--i) * 55ms);
+  }
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.clothCaption {
+  margin: 14px 2px 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 42ch;
+}
+
+/* ── Bands ───────────────────────────────────────────────────────────────── */
+
+.homeMain {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.band {
+  padding: 64px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.bandTitle {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.bandLead {
+  margin: -8px 0 36px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.bandFoot {
+  margin: 32px 0 0;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+.prose p {
+  margin: 0 0 18px;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 68ch;
+  color: var(--ink-soft);
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.inlineLink {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.inlineLink:hover {
+  text-decoration-color: var(--ink);
+}
+
+/* ── Steps ───────────────────────────────────────────────────────────────── */
+
+/* Numbered because this genuinely is a sequence: source, check, generate. */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 36px 40px;
+}
+
+.step {
+  counter-increment: step;
+  position: relative;
+  padding-top: 40px;
+}
+
+.step::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--gold);
+  border-top: 2px solid var(--gold);
+  padding-top: 8px;
+  min-width: 48px;
+}
+
+.stepTitle {
+  margin: 0 0 10px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.step p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.step code,
+.prose code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.88em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(148, 163, 184, 0.16);
+}
+
+/* ── Packages ────────────────────────────────────────────────────────────── */
+
+.packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.package {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--paper-sunk);
+}
+
+.packageName {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.packageWhat {
+  margin: 0 0 18px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.snippet {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  overflow-x: auto;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.snippet:last-child {
+  margin-bottom: 0;
+}
+
+.snippetCode {
+  color: var(--ink-soft);
+  white-space: pre;
+}
+
+.bandClose {
+  padding-bottom: 88px;
+}
+
+.bandClose .heroActions {
+  margin-top: 28px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.homeRoot .siteFooter {
+  border-top: 1px solid var(--rule);
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 0.8125rem;
+}
+
+.homeRoot .siteFooter a {
+  color: var(--ink-soft);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    padding: 48px 24px 64px;
+  }
+
+  .heroTitle {
+    max-width: 18ch;
+  }
+
+  .cloth {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero,
+  .homeMain {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .band {
+    padding: 48px 0;
+  }
+}

@@ -1,7 +1,8 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import {Bricolage_Grotesque, Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import {ThemeProvider} from "./components/theme-provider";
+import MigrationBanner from "./components/migration-banner";
 import React from "react";
 
 const geistSans = Geist({
@@ -12,6 +13,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
+});
+
+// Display face for headlines. Bricolage has a hand-cut irregularity that suits
+// symbols carved into calabash stamps; Geist stays the UI and body face.
+const bricolage = Bricolage_Grotesque({
+    variable: "--font-display",
+    subsets: ["latin"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,9 +43,12 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} antialiased`}
         >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+            <MigrationBanner/>
+            {children}
+        </ThemeProvider>
         </body>
         </html>
     );

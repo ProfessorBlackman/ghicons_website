@@ -151,7 +151,7 @@ function MyComponent() {
 }`}</CodeBlock>
             <p className="docsPara">
               Browse every icon — with a copy-ready snippet — on the{' '}
-              <Link href="/" className="docsLink">Browse page</Link>.
+              <Link href="/icons" className="docsLink">Browse page</Link>.
             </p>
           </Section>
 
