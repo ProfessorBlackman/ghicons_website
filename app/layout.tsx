@@ -25,7 +25,7 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
     title: "ghicons",
-    description: "Browse Ghanaian cultural icons — Adinkra, national emblems and more. For React, for any other framework, or as plain SVG.",
+    description: "Ghanaian symbols gathered in one place and standardised — Adinkra, currency, national emblems and more. For React, for any other framework, or as plain SVG.",
     icons: "/logo.svg",
     keywords: ["ghicons", "react", "npm",
         "icons", "typescript", "package",

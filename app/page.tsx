@@ -38,7 +38,7 @@ const CLOTH = [
 export const metadata = {
   title: 'ghicons — Ghanaian symbols for software',
   description:
-    'A collection of Ghanaian cultural symbols — Adinkra, national emblems and more — as plain SVG, typed React components, and a machine-readable index.',
+    'Ghanaian symbols gathered in one place and standardised — Adinkra, currency, national emblems and more — as plain SVG, typed React components, and a machine-readable index.',
 }
 
 export default function Home() {
@@ -50,8 +50,9 @@ export default function Home() {
         <div className="heroText">
           <h1 className="heroTitle">Ghanaian symbols for software.</h1>
           <p className="heroLead">
-            {icons.length} Adinkra symbols, national emblems and other Ghanaian motifs. Plain SVG
-            for any framework, typed React components, and an index you can build on.
+            Adinkra, the Cedi, national emblems — Ghanaian symbols gathered in one place and
+            standardised, so they all behave the same. {icons.length} so far, as plain SVG for any
+            framework, typed React components, and an index you can build on.
           </p>
           <div className="heroActions">
             <Link href="/icons" className="btn btnPrimary">
@@ -86,23 +87,66 @@ export default function Home() {
           <h2 className="bandTitle">Why this exists</h2>
           <div className="prose">
             <p>
-              Ghana has hundreds of Adinkra symbols, national emblems and cultural motifs, each
-              carrying a specific meaning. Almost no icon library includes any of them, so
-              developers building for Ghanaian audiences reach for generic sets that have nothing
-              to do with the people using their software.
+              Ghanaian symbols are scattered. Wanting Gye Nyame, the Cedi sign or a national
+              emblem means searching the web and turning up a PNG on one page, a hand-traced SVG
+              on another, a screenshot on a third. Different sizes, different line weights,
+              different quality — and nothing built to sit beside anything else.
             </p>
             <p>
-              GHIcons exists to close that gap, and to do it carefully. These are real cultural
-              symbols, not decorative shapes — so the project documents what it knows, says when it
-              does not know, and prefers a smaller accurate collection to a larger questionable
-              one.
+              GHIcons gathers them in one place and puts them all on the same footing. One canvas,
+              one colour model, one naming convention, one install. Any two symbols in the
+              collection line up next to each other and take the same props, because they are all
+              produced from the same source by the same pipeline.
             </p>
             <p>
+              Because many of these carry real meaning, the project also documents what it knows
+              and says plainly when it does not.{' '}
               <Link href="/about" className="inlineLink">
                 More on the symbols and how they are researched
               </Link>
             </p>
           </div>
+        </section>
+
+        <section className="band" id="scope">
+          <h2 className="bandTitle">What counts as a Ghanaian symbol</h2>
+          <div className="prose">
+            <p>
+              All of them. Not only the cultural ones. Adinkra is where the collection started and
+              it is still the largest part, but the aim is every symbol that is Ghanaian or
+              belongs to Ghanaian life.
+            </p>
+          </div>
+          <ul className="scopeList">
+            <li>
+              <strong>Tribal and cultural symbols</strong>
+              <span>Adinkra and the symbol systems of Ghana&apos;s peoples. Here now.</span>
+            </li>
+            <li>
+              <strong>Currency</strong>
+              <span>The Cedi and the marks of Ghanaian money and trade. Here now.</span>
+            </li>
+            <li>
+              <strong>National and state emblems</strong>
+              <span>
+                The flag, the Black Star, the coat of arms, and the symbols of government. Partly
+                here, growing.
+              </span>
+            </li>
+            <li>
+              <strong>Movements and organisations</strong>
+              <span>
+                The marks of Ghanaian institutions, movements and civic bodies. Planned.
+              </span>
+            </li>
+            <li>
+              <strong>Ghanaian brands</strong>
+              <span>
+                A longer-term ambition, and the one that needs the most care — trademarks belong
+                to their owners, so this will not be approached casually.
+              </span>
+            </li>
+          </ul>
         </section>
 
         <section className="band bandSteps" id="how">
@@ -182,10 +226,11 @@ export default function Home() {
           <h2 className="bandTitle">Add a symbol</h2>
           <div className="prose">
             <p>
-              The collection grows by contribution, and most of what it needs is not code. Drawing
-              a symbol takes an SVG. Documenting what a symbol means takes research and careful
-              sourcing — many icons still have no recorded meaning, and that is the work the
-              project most needs right now.
+              The collection grows by contribution, and most of what it needs is not code. If a
+              symbol belongs to Ghanaian life and is not here yet, it should be. Drawing one takes
+              an SVG. Documenting what it means takes research and careful sourcing — many icons
+              still have no recorded meaning, and that is the work the project most needs right
+              now.
             </p>
           </div>
           <div className="heroActions">

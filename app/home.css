@@ -406,3 +406,45 @@
     padding: 48px 0;
   }
 }
+
+/* ── Scope ───────────────────────────────────────────────────────────────── */
+
+/* Deliberately not a card grid: this is a list of what the collection covers,
+   and the status note next to each matters as much as the label. */
+.scopeList {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.scopeList li {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 8px 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+.scopeList li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.scopeList strong {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.scopeList span {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+@media (max-width: 640px) {
+  .scopeList li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

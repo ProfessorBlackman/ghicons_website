@@ -1,6 +1,10 @@
+/* Opaque on purpose. This sits directly on <body>, which has no background of
+   its own — the page colour comes from the themed root below it. A translucent
+   tint here renders over the white canvas in both themes, which left the dark
+   variant as pale yellow text on white. */
 .migrationBanner {
-  background: rgba(234, 179, 8, 0.12);
-  border-bottom: 1px solid rgba(234, 179, 8, 0.4);
+  background: #fdf6e0;
+  border-bottom: 1px solid rgba(202, 138, 4, 0.45);
   font-size: 13.5px;
   line-height: 1.5;
 }
@@ -75,12 +79,12 @@
 }
 
 .migrationBanner.isDark {
-  background: rgba(234, 179, 8, 0.14);
-  border-bottom-color: rgba(234, 179, 8, 0.32);
+  background: #2b2310;
+  border-bottom-color: rgba(234, 179, 8, 0.35);
 }
 
 .migrationBanner.isDark .migrationBannerTag {
-  background: rgba(234, 179, 8, 0.3);
+  background: rgba(234, 179, 8, 0.22);
   color: #fde68a;
 }
 

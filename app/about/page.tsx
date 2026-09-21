@@ -14,7 +14,7 @@ const documented = icons.filter((i) => i.meaning).length
 export const metadata = {
   title: 'About — ghicons',
   description:
-    'What Adinkra symbols are, how GHIcons researches and represents them, and how to contribute — including the work that needs no code.',
+    'What the GHIcons collection takes in, what Adinkra symbols are, how the project researches and represents them, and how to contribute — including the work that needs no code.',
 }
 
 export default function AboutPage() {
@@ -25,13 +25,31 @@ export default function AboutPage() {
       <header className="aboutHead">
         <h1 className="heroTitle aboutTitle">About the collection</h1>
         <p className="heroLead">
-          GHIcons is a collection of Ghanaian cultural symbols kept in a form software can use.
-          This page covers what the symbols are, how the project handles their meanings, and how
-          to help.
+          GHIcons gathers Ghanaian symbols in one place and standardises them, so developers stop
+          hunting across the web for a usable copy. This page covers what the collection takes in,
+          how the project handles meanings, and how to help.
         </p>
       </header>
 
       <main className="homeMain">
+        <section className="band" id="scope">
+          <h2 className="bandTitle">What the collection takes in</h2>
+          <div className="prose">
+            <p>
+              Every symbol that is Ghanaian or belongs to Ghanaian life — not only the cultural
+              ones. Adinkra is where the collection started and remains the largest part, but the
+              scope also covers the currency, national and state emblems, and the marks of
+              Ghanaian movements and organisations. Ghanaian brands are a longer-term ambition,
+              and the one needing most care, since trademarks belong to their owners.
+            </p>
+            <p>
+              The thread is not that a symbol is old or ceremonial. It is that someone building
+              software for Ghana would reasonably want it, and should not have to go looking for
+              it.
+            </p>
+          </div>
+        </section>
+
         <section className="band" id="adinkra">
           <h2 className="bandTitle">What Adinkra symbols are</h2>
           <div className="prose">
@@ -88,7 +106,8 @@ export default function AboutPage() {
                 </h3>
                 <p>
                   Ghanaian concepts and objects outside the Adinkra canon — currency, everyday
-                  iconography, and the things that do not fit elsewhere.
+                  iconography, and the things that do not fit elsewhere. This is the category with
+                  the most room to grow.
                 </p>
               </div>
             </article>
@@ -167,8 +186,9 @@ export default function AboutPage() {
             <article className="way">
               <h3 className="wayTitle">Request or correct one</h3>
               <p>
-                Know a symbol that should be here, or spot one that is named or drawn wrongly?
-                Say so. Corrections to existing icons are as valuable as new ones.
+                Know a symbol that should be here — cultural, national, commercial, anything
+                Ghanaian — or spot one that is named or drawn wrongly? Say so. Corrections to
+                existing icons are as valuable as new ones.
               </p>
               <a
                 className="inlineLink"
