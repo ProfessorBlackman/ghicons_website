@@ -390,3 +390,39 @@ code {
   padding: 0;
   font-size: inherit;
 }
+
+/* Three-column props table, used by the migration rename table. */
+.propsRow3col {
+  grid-template-columns: 160px 160px 1fr;
+}
+
+/* A callout that needs to read as a warning rather than a tip — currently the
+   breaking-change notice for anyone arriving from ghicons 0.0.x. */
+.calloutWarn {
+  border-color: rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.09);
+  margin-bottom: 28px;
+}
+
+.isDark .calloutWarn {
+  border-color: rgba(234, 179, 8, 0.4);
+  background: rgba(234, 179, 8, 0.12);
+}
+
+@media (max-width: 720px) {
+  .propsRow3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The "Which package?" table is prose on the left, a package name on the right,
+   so it wants the opposite split from the props tables. */
+.propsRowWide {
+  grid-template-columns: 1fr 200px;
+}
+
+@media (max-width: 720px) {
+  .propsRowWide {
+    grid-template-columns: 1fr;
+  }
+}

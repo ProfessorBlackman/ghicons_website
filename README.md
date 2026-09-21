@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ghicons.methuselah.site
 
-## Getting Started
+The public icon browser and documentation site for [GHIcons](https://github.com/ProfessorBlackman/ghicons) — a collection of Ghanaian cultural symbols.
 
-First, run the development server:
+Live at **[ghicons.methuselah.site](https://ghicons.methuselah.site)**.
+
+## What it does
+
+- **Browse** all 106 icons, filter by category, search by name, slug or keyword
+- **Preview** any icon at any size and colour, and copy the JSX
+- **Copy a CDN URL** for the raw SVG, for people not using React
+- **Docs** covering both packages, the registry, accessibility and migration
+
+## How it relates to the library
+
+This site is a **consumer** of GHIcons, not part of it. It installs the published packages from npm rather than linking to the source, so a library change reaches the site only after a release and a dependency bump here.
+
+| Package | Used for |
+|---|---|
+| [`ghicons`](https://www.npmjs.com/package/ghicons) | The registry — names, slugs, categories, and the SVG paths behind the CDN links |
+| [`@ghicons/react`](https://www.npmjs.com/package/@ghicons/react) | The components rendered in the gallery |
+
+The gallery is driven by the registry rather than by enumerating the React package, so categories and counts here are the same ones every other consumer sees. There is no second list to keep in step.
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Updating to a new GHIcons release
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm update ghicons @ghicons/react
+pnpm build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+New icons appear automatically — the gallery reads the registry. If a release renames or removes an icon, check that nothing on the site references it by name (`app/components/nav-bar.tsx` imports one directly for the logo).
 
-## Learn More
+## Contributing icons
 
-To learn more about Next.js, take a look at the following resources:
+Icon contributions go to the [main repository](https://github.com/ProfessorBlackman/ghicons), not here. You only need to supply an SVG — see the [icon specification](https://github.com/ProfessorBlackman/ghicons/blob/master/docs/ICON-SPEC.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cultural research is just as valuable and needs no code: many icons still have no documented meaning, and the site shows a prompt wherever one is missing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

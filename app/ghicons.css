@@ -376,3 +376,127 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ── Category filter ─────────────────────────────────────────────────────── */
+
+/* The base .segmented is a two-column grid; categories need to wrap instead,
+   because the count grows as the collection does. */
+.segmented.cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.segmented.cats .segBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.segCount {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.22);
+  opacity: 0.9;
+}
+
+.segBtn.active .segCount {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+
+.emptyState {
+  grid-column: 1 / -1;
+  padding: 32px 8px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.emptyState a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ── Icon metadata, from the ghicons registry ────────────────────────────── */
+
+.iconMeta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  margin: 0 0 12px 0;
+  font-size: 13px;
+}
+
+.iconMeta dt {
+  opacity: 0.65;
+}
+
+.iconMeta dd {
+  margin: 0;
+}
+
+.iconMeaning {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.iconMeaningMissing {
+  margin: 0 0 12px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  opacity: 0.75;
+}
+
+.iconMeaningMissing a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ── Raw SVG / CDN link ──────────────────────────────────────────────────── */
+
+.rawSvg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.rawSvgLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+.rawSvgUrl {
+  flex: 1 1 140px;
+  min-width: 0;
+  font-size: 12px;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resetColor {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.resetColor:hover {
+  background: rgba(148, 163, 184, 0.14);
+}

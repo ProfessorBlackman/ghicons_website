@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { AbusuaPa } from 'ghicons'
+import { AbusuaPa } from '@ghicons/react'
 import { useTheme } from './theme-provider'
 import './nav-bar.css'
 

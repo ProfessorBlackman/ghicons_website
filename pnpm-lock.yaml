@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@ghicons/react':
+        specifier: ^0.1.0
+        version: 0.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       ghicons:
-        specifier: ^0.0.1
-        version: 0.0.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.1.0
+        version: 0.1.0
       next:
         specifier: 16.1.6
         version: 16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -165,6 +168,12 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@ghicons/react@0.1.0':
+    resolution: {integrity: sha512-+2HTyyNu/Hi1GvmuCgXADW0F6X6k3/+qDTU8AVYyT1pbro8y1ebDnHE/nrfV8E10jxUY3HznMMFKt9538Ftscw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1166,11 +1175,8 @@ packages:
   get-tsconfig@4.13.6:
     resolution: {integrity: sha512-shZT/QMiSHc/YBLxxOkMtgSid5HFoauqCE3/exfsEcwg1WkeqjG+V40yBbBrsD+jW2HDXcs28xOfcbm2jI8Ddw==}
 
-  ghicons@0.0.1:
-    resolution: {integrity: sha512-B9LUeR6chfVf0HLS042X4W8eEvGhWMu621Z06Giqf1BVI/yCJjOfOI/+/cHlCg77RVMFrsgGJxtJR7xIC1IVNg==}
-    peerDependencies:
-      react: ^19.0.0
-      react-dom: ^19.0.0
+  ghicons@0.1.0:
+    resolution: {integrity: sha512-ADulfhdBBoPa4NRomeGq+Wmc5Un+29JwNxgHkB0zySRRs2aBEpvV8EezFaaugZtD17IyZA3tKdJ3zAIPe7qlFQ==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2129,6 +2135,11 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
+
+  '@ghicons/react@0.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   '@humanfs/core@0.19.1': {}
 
@@ -3194,10 +3205,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  ghicons@0.0.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
-    dependencies:
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
+  ghicons@0.1.0: {}
 
   glob-parent@5.1.2:
     dependencies:

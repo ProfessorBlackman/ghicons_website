@@ -16,11 +16,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: "ghicons",
-    description: "Browse and preview traditional Ghanaian icons for React",
+    description: "Browse Ghanaian cultural icons — Adinkra, national emblems and more. For React, for any other framework, or as plain SVG.",
     icons: "/logo.svg",
     keywords: ["ghicons", "react", "npm",
         "icons", "typescript", "package",
-        "symbols", "ghanaian", "ghana"
+        "symbols", "ghanaian", "ghana",
+        "adinkra", "svg", "icon library",
+        "african", "cultural symbols"
     ],
 };
 
