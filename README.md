@@ -8,7 +8,7 @@ Live at **[ghicons.methuselah.site](https://ghicons.methuselah.site)**.
 
 - **Browse** all 106 icons, filter by category, search by name, slug or keyword
 - **Preview** any icon at any size and colour, and copy the JSX
-- **A page per icon** at `/icons/<slug>/` — its meaning, its metadata, React and plain-HTML snippets, an SVG download and related symbols
+- **A page per icon** at `/icons/<slug>/` — its meaning, the context and the sources behind it, its metadata, React and plain-HTML snippets, an SVG download and related symbols
 - **Copy a CDN URL** for the raw SVG, for people not using React
 - **Docs** covering both packages, the registry, accessibility and migration
 
@@ -86,6 +86,13 @@ pnpm build && npx serve out
 pnpm update ghicons @ghicons/react
 pnpm build
 ```
+
+The icon pages render `note` and `references` — the longer context behind a
+symbol, and the sources its meaning rests on — which entered the registry in
+`ghicons` 0.2.0. The site still builds against an older core: the fields are
+absent, and the sections that read them do not render. `app/lib/icons.ts`
+declares them locally for exactly that reason, and that declaration can be
+deleted once the dependency is 0.2.0 or later.
 
 New icons appear automatically — the gallery, the icon pages, the Open Graph cards and the sitemap all read the registry. If a release renames or removes an icon, check that nothing on the site references it by name: `app/components/nav-bar.tsx` imports one directly for the logo, and `app/og/image.png/route.tsx` names five for the site card. A rename also changes that icon's URL, so it is worth a redirect or a note if anything linked to the old one.
 

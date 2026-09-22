@@ -6,7 +6,7 @@ import * as Icons from '@ghicons/react'
 import type { Icon } from 'ghicons'
 import NavBar from '../../components/nav-bar'
 import { useTheme } from '../../components/theme-provider'
-import { categoryLabel, iconHref } from '../../lib/icons'
+import { categoryLabel, iconHref, type DocumentedIcon } from '../../lib/icons'
 import { REPO_URL } from '../../lib/site'
 import '../icons.css'
 import './icon-detail.css'
@@ -20,8 +20,28 @@ type IconComponent = React.ComponentType<{
 
 const componentsByName = Icons as unknown as Record<string, IconComponent | undefined>
 
+/**
+ * A reference is one citation line, and it usually ends in a URL:
+ *
+ *   Willis, W. Bruce. The Adinkra Dictionary … (1998)
+ *   Carter G. Woodson Center, Berea College — “The Power of Sankofa”, https://…
+ *   https://www.adinkrasymbols.org/symbols/gye-nyame/
+ *
+ * Split the two so the citation reads as a citation and the link is clickable,
+ * rather than printing a bare URL in the middle of a sentence.
+ */
+function splitReference(reference: string) {
+  const match = reference.match(/(https?:\/\/\S+)\s*$/)
+  if (!match) return { label: reference, href: null }
+
+  const href = match[1].replace(/[.,;]+$/, '')
+  const label = reference.slice(0, match.index).replace(/[\s,—–-]+$/, '').trim()
+  const pretty = href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+  return { label: label || pretty, href }
+}
+
 type Props = {
-  icon: Icon
+  icon: DocumentedIcon
   /** The canonical SVG markup, inlined at build time by the page. */
   svg: string
   /** The `ghicons` version this page was built against, for the pinned CDN URL. */
@@ -97,6 +117,11 @@ export default function IconDetail({ icon, svg, version, related }: Props) {
   }
 
   const label = (which: string, idle = 'Copy') => (copied === which ? 'Copied' : idle)
+
+  // An icon documented without a note or sources — or a new one with nothing
+  // written about it yet — would otherwise get a card containing a heading and
+  // nothing else.
+  const hasProvenance = !icon.meaning || Boolean(icon.note) || Boolean(icon.references?.length)
 
   return (
     <div className={`demoRoot ${theme === 'dark' ? 'isDark' : 'isLight'}`}>
@@ -184,6 +209,62 @@ export default function IconDetail({ icon, svg, version, related }: Props) {
           </section>
 
           <div className="detailSide">
+            {hasProvenance && (
+              <section className="detailCard" aria-label="Where this comes from">
+                <h2 className="detailCardTitle">Where this comes from</h2>
+
+                {!icon.meaning && (
+                  <p className="iconMeaningMissing">
+                    The documented meaning of this symbol has not been written up yet.{' '}
+                    <a
+                      href={`${REPO_URL}/blob/master/docs/wiki/Cultural-Guidelines.md`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Contribute the research
+                    </a>{' '}
+                    — you do not need to write code.
+                  </p>
+                )}
+
+                {icon.note && <p className="iconNote">{icon.note}</p>}
+
+                {icon.references && icon.references.length > 0 && (
+                  <div className="sources">
+                    <h3 className="sourcesTitle">Sources</h3>
+                    <ul className="sourcesList">
+                      {icon.references.map((reference) => {
+                        const { label: citation, href } = splitReference(reference)
+                        return (
+                          <li key={reference}>
+                            {href ? (
+                              <a href={href} target="_blank" rel="noopener noreferrer">
+                                {citation}
+                              </a>
+                            ) : (
+                              citation
+                            )}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    <p className="sourcesNote">
+                      These are cultural symbols, so every meaning here cites where it came
+                      from.{' '}
+                      <a
+                        href={`${REPO_URL}/blob/master/docs/wiki/Cultural-Guidelines.md`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Corrections and better sources
+                      </a>{' '}
+                      are welcome.
+                    </p>
+                  </div>
+                )}
+              </section>
+            )}
+
             <section className="detailCard" aria-label="Usage">
               <h2 className="detailCardTitle">Use it</h2>
 
@@ -251,21 +332,6 @@ export default function IconDetail({ icon, svg, version, related }: Props) {
                 )}
               </dl>
 
-              {icon.meaning ? (
-                <p className="iconMeaning">{icon.meaning}</p>
-              ) : (
-                <p className="iconMeaningMissing">
-                  The documented meaning of this symbol has not been written up yet.{' '}
-                  <a
-                    href={`${REPO_URL}/blob/master/docs/wiki/Cultural-Guidelines.md`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Contribute the research
-                  </a>{' '}
-                  — you do not need to write code.
-                </p>
-              )}
             </section>
           </div>
         </main>
